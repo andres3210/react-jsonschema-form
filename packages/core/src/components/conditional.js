@@ -118,6 +118,19 @@ export function evalConditional(value, condition) {
     case "not in":
       return condition.value.indexOf(value) == -1;
 
+    // Numeric ans String Operators
+    case ">=":
+      return value >= condition.value;
+
+    case ">":
+      return value > condition.value;
+
+    case "<=":
+      return value <= condition.value;
+
+    case "<":
+      return value < condition.value;
+
     case "!=":
       return value != condition.value;
 

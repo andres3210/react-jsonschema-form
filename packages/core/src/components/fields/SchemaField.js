@@ -15,6 +15,8 @@ import {
   getDisplayLabel,
 } from "../../utils";
 
+import { evaluateAllConditions } from "../conditional";
+
 const REQUIRED_FIELD_SYMBOL = "*";
 const COMPONENT_TYPES = {
   array: "ArrayField",
@@ -411,10 +413,10 @@ class SchemaField extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { conditionMet: false };
     this.conditional = this.props.schema?.conditional || null;
+    this.state = { conditionMet: this.conditional === null };
 
-    // @todo: move to parent
+    // @todo: move to parent (needed for relative conditions "./age" )
     this.parentPath = this.props.idSchema?.$id.replace("root_", "");
     /*if( typeof(this.props.children.props.name) == 'string')
         this.parentPath = this.parentPath.replace('_' + this.props.children.props.name, '')*/
@@ -426,14 +428,17 @@ class SchemaField extends React.Component {
       typeof this.conditional.data != "undefined"
     ) {
       this.initListener(this.conditional.data);
+      this.evaluateConditional();
     }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return !deepEquals(this.props, nextProps);
+    return (
+      !deepEquals(this.props, nextProps) || !deepEquals(this.state, nextState)
+    );
   }
 
-  initListener(node) {
+  initListener = node => {
     if (typeof this.subscritionsCtrl == "undefined") {
       this.subscritionsCtrl = [];
     }
@@ -450,16 +455,39 @@ class SchemaField extends React.Component {
         this.props.id
       );
     }
-  }
+  };
 
   listenerCallback = (node, value) => {
-    console.log("conditional callback", this.parentPath, node, value);
-    //this.injectConditionalInputs(this.conditional, node, value);
-    //this.masterEvaluateCondition();
+    this.injectConditionalInputs(this.conditional, node, value);
+    this.evaluateConditional();
+  };
+
+  evaluateConditional = () => {
+    let result = evaluateAllConditions(this.conditional);
+    if (result != this.state.conditionMet) {
+      this.setState({ conditionMet: result }, this.forceUpdate());
+    }
+  };
+
+  /**
+   * Recoursive method to inject input values from conditional subscriptions
+   */
+  injectConditionalInputs = (conditionNode, node, value) => {
+    if (conditionNode.data == node) {
+      conditionNode.input = value;
+    }
+
+    if (typeof conditionNode.subConditions != "undefined") {
+      conditionNode.subConditions.forEach(subCondition => {
+        this.injectConditionalInputs(subCondition, node, value);
+      });
+    }
   };
 
   render() {
-    return SchemaFieldRender(this.props);
+    return this.state.conditionMet === true
+      ? SchemaFieldRender(this.props)
+      : null;
   }
 }
 
