@@ -14,14 +14,19 @@ module.exports = {
         type: "string",
         title: "Last name",
       },
-      // age: {
-      //   type: "integer",
-      //   title: "Age",
-      // },
-      // bio: {
-      //   type: "string",
-      //   title: "Bio",
-      // },
+      age: {
+        type: "integer",
+        title: "Age",
+      },
+      bio: {
+        type: "string",
+        title: "Bio",
+        conditional:{
+          data: "age",
+          operator: ">=",
+          value: 18
+        }
+      },
       // password: {
       //   type: "string",
       //   title: "Password",
@@ -67,7 +72,7 @@ module.exports = {
   },
   formData: {
     lastName: "Norris",
-    age: 75,
+    age: 17,
     bio: "Roundhouse kicking asses since 1940",
     password: "noneed",
   },
