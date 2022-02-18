@@ -191,6 +191,7 @@ class ObjectField extends Component {
       onBlur,
       onFocus,
       registry = getDefaultRegistry(),
+      subscribeNodeUpdates,
     } = this.props;
 
     const { rootSchema, fields, formContext } = registry;
@@ -214,7 +215,6 @@ class ObjectField extends Component {
         </div>
       );
     }
-
     const Template =
       uiSchema["ui:ObjectFieldTemplate"] ||
       registry.ObjectFieldTemplate ||
@@ -233,7 +233,6 @@ class ObjectField extends Component {
           ? uiSchema.additionalProperties
           : uiSchema[name];
         const hidden = fieldUiSchema && fieldUiSchema["ui:widget"] === "hidden";
-
         return {
           content: (
             <SchemaField
@@ -258,6 +257,7 @@ class ObjectField extends Component {
               disabled={disabled}
               readonly={readonly}
               onDropPropertyClick={this.onDropPropertyClick}
+              subscribeNodeUpdates={subscribeNodeUpdates}
             />
           ),
           name,

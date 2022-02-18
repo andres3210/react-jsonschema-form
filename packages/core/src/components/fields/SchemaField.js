@@ -169,6 +169,7 @@ if (process.env.NODE_ENV !== "production") {
     displayLabel: PropTypes.bool,
     fields: PropTypes.object,
     formContext: PropTypes.object,
+    subscribeNodeUpdates: PropTypes.func,
   };
 }
 
@@ -244,6 +245,7 @@ function SchemaFieldRender(props) {
     required,
     registry = getDefaultRegistry(),
     wasPropertyKeyModified = false,
+    subscribeNodeUpdates,
   } = props;
   const { rootSchema, fields, formContext } = registry;
   const FieldTemplate =
@@ -285,6 +287,7 @@ function SchemaFieldRender(props) {
       errorSchema={fieldErrorSchema}
       formContext={formContext}
       rawErrors={__errors}
+      subscribeNodeUpdates={subscribeNodeUpdates}
     />
   );
 
@@ -345,6 +348,7 @@ function SchemaFieldRender(props) {
     schema,
     uiSchema,
     registry,
+    subscribeNodeUpdates,
   };
 
   const _AnyOfField = registry.fields.AnyOfField;
@@ -354,12 +358,11 @@ function SchemaFieldRender(props) {
     <FieldTemplate {...fieldProps}>
       <React.Fragment>
         {field}
-
         {/*
-        If the schema `anyOf` or 'oneOf' can be rendered as a select control, don't
-        render the selection and let `StringField` component handle
-        rendering
-      */}
+          If the schema `anyOf` or 'oneOf' can be rendered as a select control, don't
+          render the selection and let `StringField` component handle
+          rendering
+        */}
         {schema.anyOf && !isSelect(schema) && (
           <_AnyOfField
             disabled={disabled}
@@ -405,9 +408,55 @@ function SchemaFieldRender(props) {
 }
 
 class SchemaField extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { conditionMet: false };
+    this.conditional = this.props.schema?.conditional || null;
+
+    // @todo: move to parent
+    this.parentPath = this.props.idSchema?.$id.replace("root_", "");
+    /*if( typeof(this.props.children.props.name) == 'string')
+        this.parentPath = this.parentPath.replace('_' + this.props.children.props.name, '')*/
+  }
+
+  componentWillMount() {
+    if (
+      this.conditional != null &&
+      typeof this.conditional.data != "undefined"
+    ) {
+      this.initListener(this.conditional.data);
+    }
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     return !deepEquals(this.props, nextProps);
   }
+
+  initListener(node) {
+    if (typeof this.subscritionsCtrl == "undefined") {
+      this.subscritionsCtrl = [];
+    }
+
+    if (
+      typeof this.props.subscribeNodeUpdates == "function" &&
+      this.subscritionsCtrl.indexOf(node) == -1
+    ) {
+      this.subscritionsCtrl.push(node);
+      this.props.subscribeNodeUpdates(
+        node,
+        this.parentPath,
+        this.listenerCallback.bind(null, node),
+        this.props.id
+      );
+    }
+  }
+
+  listenerCallback = (node, value) => {
+    console.log("conditional callback", this.parentPath, node, value);
+    //this.injectConditionalInputs(this.conditional, node, value);
+    //this.masterEvaluateCondition();
+  };
 
   render() {
     return SchemaFieldRender(this.props);
@@ -431,6 +480,7 @@ if (process.env.NODE_ENV !== "production") {
     formData: PropTypes.any,
     errorSchema: PropTypes.object,
     registry: types.registry.isRequired,
+    subscribeNodeUpdates: PropTypes.func,
   };
 }
 

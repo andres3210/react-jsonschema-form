@@ -18,6 +18,8 @@ import {
 import validateFormData, { toErrorList } from "../validate";
 import { mergeObjects } from "../utils";
 
+import { deepFind } from "./conditional";
+
 export default class Form extends Component {
   static defaultProps = {
     uiSchema: {},
@@ -290,6 +292,7 @@ export default class Form extends Component {
       state,
       () => this.props.onChange && this.props.onChange(this.state)
     );
+    this.refreshSubscriptions(formData);
   };
 
   onBlur = (...args) => {
@@ -422,6 +425,70 @@ export default class Form extends Component {
     }
   }
 
+  subscribeNodeUpdates = (node, calleeRoot, callback, subscriber) => {
+    if (typeof this.subscriptions == "undefined") {
+      this.subscriptions = [];
+    }
+
+    if (typeof this.subscriptionsCallbaks == "undefined") {
+      this.subscriptionsCallbaks = [];
+    }
+
+    let key = node.search("./") != -1 ? calleeRoot + "::" + node : node;
+
+    if (this.subscriptions.indexOf(key) == -1) {
+      this.subscriptions.push(key);
+    }
+
+    if (typeof callback == "function") {
+      this.subscriptionsCallbaks.push({
+        index: this.subscriptions.indexOf(key),
+        refValue: null,
+        callback: callback,
+        subscriber: subscriber,
+      });
+
+      let value = deepFind(this.state.formData, key);
+      if (typeof value != "undefined") {
+        callback(value);
+      }
+    }
+  };
+
+  refreshSubscriptions = data => {
+    if (typeof this.subscriptions != "object") {
+      return;
+    }
+
+    // Timeout handle to avoid exesive cpu loops
+    if (typeof this.asynkCall != "undefined") {
+      clearTimeout(this.asynkCall);
+    }
+
+    // Delayed Data propagation / evaluations
+    this.asynkCall = setTimeout(
+      function() {
+        this.subscriptions.forEach((node, index) => {
+          let value = deepFind(data, node);
+          if (typeof value == "undefined") {
+            return;
+          }
+
+          // pass down the value to callbacks
+          this.subscriptionsCallbaks.forEach(callbacks => {
+            if (callbacks.index == index && callbacks.refValue != value) {
+              callbacks.refValue = value;
+              if (typeof callbacks.callback == "function") {
+                callbacks.callback(value, data);
+              }
+            }
+          });
+        });
+      }.bind(this),
+      200
+    );
+  };
+
   render() {
     const {
       children,
@@ -487,6 +554,8 @@ export default class Form extends Component {
           registry={registry}
           disabled={disabled}
           readonly={readonly}
+          subscribeNodeUpdates={this.subscribeNodeUpdates}
+          exampleProperty="jona123"
         />
         {children ? (
           children
