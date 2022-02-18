@@ -21,11 +21,11 @@ module.exports = {
       bio: {
         type: "string",
         title: "Bio",
-        conditional:{
+        conditional: {
           data: "age",
           operator: ">=",
-          value: 18
-        }
+          value: 18,
+        },
       },
       // password: {
       //   type: "string",
