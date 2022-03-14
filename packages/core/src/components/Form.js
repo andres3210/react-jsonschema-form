@@ -438,6 +438,7 @@ export default class Form extends Component {
       node.search("./") != -1
         ? calleeRoot + "." + node.replace("./", "")
         : node;
+
     if (this.subscriptions.indexOf(key) == -1) {
       this.subscriptions.push(key);
     }
@@ -450,10 +451,7 @@ export default class Form extends Component {
         subscriber: subscriber,
       });
 
-      let value = deepFind(this.state.formData, key, calleeRoot);
-      if (typeof value != "undefined") {
-        callback(value);
-      }
+      callback(deepFind(this.state.formData, key, calleeRoot));
     }
   };
 
@@ -472,10 +470,6 @@ export default class Form extends Component {
       function() {
         this.subscriptions.forEach((node, index) => {
           let value = deepFind(data, node);
-
-          if (typeof value == "undefined") {
-            return;
-          }
 
           // pass down the value to callbacks
           this.subscriptionsCallbaks.forEach(callbacks => {
