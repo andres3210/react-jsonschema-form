@@ -434,8 +434,10 @@ export default class Form extends Component {
       this.subscriptionsCallbaks = [];
     }
 
-    let key = node.search("./") != -1 ? calleeRoot + "::" + node : node;
-
+    let key =
+      node.search("./") != -1
+        ? calleeRoot + "." + node.replace("./", "")
+        : node;
     if (this.subscriptions.indexOf(key) == -1) {
       this.subscriptions.push(key);
     }
@@ -448,7 +450,7 @@ export default class Form extends Component {
         subscriber: subscriber,
       });
 
-      let value = deepFind(this.state.formData, key);
+      let value = deepFind(this.state.formData, key, calleeRoot);
       if (typeof value != "undefined") {
         callback(value);
       }
@@ -470,6 +472,7 @@ export default class Form extends Component {
       function() {
         this.subscriptions.forEach((node, index) => {
           let value = deepFind(data, node);
+
           if (typeof value == "undefined") {
             return;
           }
@@ -555,7 +558,6 @@ export default class Form extends Component {
           disabled={disabled}
           readonly={readonly}
           subscribeNodeUpdates={this.subscribeNodeUpdates}
-          exampleProperty="jona123"
         />
         {children ? (
           children

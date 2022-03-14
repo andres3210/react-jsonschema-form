@@ -416,10 +416,12 @@ class SchemaField extends React.Component {
     this.conditional = this.props.schema?.conditional || null;
     this.state = { conditionMet: this.conditional === null };
 
-    // @todo: move to parent (needed for relative conditions "./age" )
-    this.parentPath = this.props.idSchema?.$id.replace("root_", "");
-    /*if( typeof(this.props.children.props.name) == 'string')
-        this.parentPath = this.parentPath.replace('_' + this.props.children.props.name, '')*/
+    // needed for relative conditions "./age"
+    this.parentPath = this.props.idSchema?.$id;
+    if (typeof this.props.name == "string") {
+      this.parentPath = this.parentPath.replace("_" + this.props.name, "");
+    }
+    this.parentPath = this.parentPath.replace("root_", "").replace("root", "");
   }
 
   componentWillMount() {
@@ -452,7 +454,7 @@ class SchemaField extends React.Component {
         node,
         this.parentPath,
         this.listenerCallback.bind(null, node),
-        this.props.id
+        this.props.idSchema?.$id
       );
     }
   };

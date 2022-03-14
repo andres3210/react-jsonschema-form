@@ -118,6 +118,13 @@ export function evalConditional(value, condition) {
     case "not in":
       return condition.value.indexOf(value) == -1;
 
+    case "INCLUDES":
+    case "includes":
+      if (value != null && typeof value == "object") {
+        return Object.values(value).indexOf(condition.value) != -1;
+      }
+      return false;
+
     // Numeric ans String Operators
     case ">=":
       return value >= condition.value;
