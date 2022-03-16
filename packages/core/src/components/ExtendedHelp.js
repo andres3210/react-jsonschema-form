@@ -13,7 +13,7 @@ export default class ExtendedHelp extends React.Component {
         {this.props.children}
         <i
           className="fa fa-question-circle"
-          style={{ "margin-left": "3px" }}
+          style={{ marginLeft: "3px" }}
           onClick={() => this.setState({ open: !this.state.open })}
         />
         <div className="clearfix" />
