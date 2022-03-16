@@ -581,6 +581,11 @@ class Playground extends Component {
                     id="theme"
                     href={this.state.stylesheet || ""}
                   />
+                  <link
+                    rel="stylesheet"
+                    id="theme"
+                    href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+                  />
                   {theme === "antd" && (
                     <div
                       dangerouslySetInnerHTML={{

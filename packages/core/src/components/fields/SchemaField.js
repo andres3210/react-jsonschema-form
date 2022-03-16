@@ -15,6 +15,7 @@ import {
   getDisplayLabel,
 } from "../../utils";
 
+import ExtendedHelp from "../extendedHelp";
 import { evaluateAllConditions } from "../conditional";
 
 const REQUIRED_FIELD_SYMBOL = "*";
@@ -61,16 +62,23 @@ function getFieldComponent(schema, uiSchema, idSchema, fields) {
 }
 
 function Label(props) {
-  const { label, required, id } = props;
+  const { label, required, extendedHelp, id } = props;
   if (!label) {
     return null;
   }
-  return (
+
+  const component = (
     <label className="control-label" htmlFor={id}>
       {label}
       {required && <span className="required">{REQUIRED_FIELD_SYMBOL}</span>}
     </label>
   );
+
+  if (typeof extendedHelp === "string") {
+    return <ExtendedHelp help={extendedHelp}>{component}</ExtendedHelp>;
+  }
+
+  return component;
 }
 
 function LabelInput(props) {
@@ -134,6 +142,7 @@ function DefaultTemplate(props) {
     children,
     errors,
     help,
+    extendedHelp,
     description,
     hidden,
     required,
@@ -145,7 +154,14 @@ function DefaultTemplate(props) {
 
   return (
     <WrapIfAdditional {...props}>
-      {displayLabel && <Label label={label} required={required} id={id} />}
+      {displayLabel && (
+        <Label
+          label={label}
+          required={required}
+          id={id}
+          extendedHelp={extendedHelp}
+        />
+      )}
       {displayLabel && description ? description : null}
       {children}
       {errors}
@@ -163,6 +179,7 @@ if (process.env.NODE_ENV !== "production") {
     rawErrors: PropTypes.arrayOf(PropTypes.string),
     help: PropTypes.element,
     rawHelp: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    extendedHelp: PropTypes.string,
     description: PropTypes.element,
     rawDescription: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     hidden: PropTypes.bool,
@@ -309,6 +326,7 @@ function SchemaFieldRender(props) {
     schema.description;
   const errors = __errors;
   const help = uiSchema["ui:help"];
+  const extendedHelp = uiSchema["ui:extended-help"];
   const hidden = uiSchema["ui:widget"] === "hidden";
   const classNames = [
     "form-group",
@@ -331,6 +349,7 @@ function SchemaFieldRender(props) {
     rawDescription: description,
     help: <Help id={id + "__help"} help={help} />,
     rawHelp: typeof help === "string" ? help : undefined,
+    extendedHelp: typeof extendedHelp === "string" ? extendedHelp : undefined,
     errors: <ErrorList errors={errors} />,
     rawErrors: errors,
     id,
