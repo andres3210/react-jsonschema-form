@@ -443,7 +443,7 @@ class SchemaField extends React.Component {
     this.parentPath = this.parentPath.replace("root_", "").replace("root", "");
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (
       this.conditional != null &&
       typeof this.conditional.data != "undefined"
