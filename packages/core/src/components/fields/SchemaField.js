@@ -15,7 +15,7 @@ import {
   getDisplayLabel,
 } from "../../utils";
 
-import ExtendedHelp from "../extendedHelp";
+import ExtendedHelp from "../ExtendedHelp";
 import { evaluateAllConditions } from "../conditional";
 
 const REQUIRED_FIELD_SYMBOL = "*";
