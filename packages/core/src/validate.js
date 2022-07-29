@@ -2,6 +2,10 @@ import toPath from "lodash/toPath";
 import Ajv from "ajv";
 let ajv = createAjvInstance();
 import { deepEquals, getDefaultFormState } from "./utils";
+import {
+  deepFindSchema,
+  evaluateAllConditions,
+} from "./components/conditional";
 
 let formerCustomFormats = null;
 let formerMetaSchema = null;
@@ -245,6 +249,20 @@ export default function validateFormData(
       },
     };
   }
+
+  // Jonathan Arias
+  // Check for Conditions not met
+  // remove error from hidden fields
+  errors.forEach((err, pos) => {
+    const fieldSchema = deepFindSchema(schema, err.property);
+    if (
+      fieldSchema != null &&
+      typeof fieldSchema.conditional != "undefined" &&
+      evaluateAllConditions(fieldSchema.conditional) !== true
+    ) {
+      delete errors[pos];
+    }
+  });
 
   if (typeof customValidate !== "function") {
     return { errors, errorSchema };

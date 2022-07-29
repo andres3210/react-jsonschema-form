@@ -76,6 +76,34 @@ export function deepFind(obj, path, relative_path) {
   return current;
 }
 
+export function deepFindSchema(schema, path) {
+  if (schema == null || typeof schema == undefined) {
+    return null;
+  }
+
+  let needle = schema;
+  const parts = path.split(".");
+  for (let i = 0; i < parts.length; ++i) {
+    const part = parts[i];
+    if (part === "") {
+      continue;
+    }
+
+    if (
+      needle.type == "object" &&
+      typeof needle.properties != "undefined" &&
+      typeof needle.properties[part] != "undefined"
+    ) {
+      needle = needle.properties[part];
+      if (needle.type != "object") {
+        return needle;
+      }
+    }
+  }
+
+  return null;
+}
+
 /**
  * This funtion evaluates 1 condition
  */
