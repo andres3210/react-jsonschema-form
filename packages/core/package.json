@@ -29,9 +29,7 @@
   "module": "./dist/es/index.js",
   "files": [
     "dist",
-    "dist/*",
     "lib",
-    "lib/*",
     "index.d.ts"
   ],
   "engineStrict": false,
