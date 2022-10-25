@@ -1,5 +1,5 @@
 import React from "react";
-import { FieldProps } from "@rjsf/core";
+import { FieldProps } from "@northek/rjsf-core";
 
 export interface DescriptionFieldProps extends Partial<FieldProps> {
   description?: string;

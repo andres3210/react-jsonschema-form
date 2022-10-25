@@ -1,4 +1,4 @@
-import { utils, withTheme } from '@rjsf/core';
+import { utils, withTheme } from '@northek/rjsf-core';
 
 import DescriptionField from './fields/DescriptionField';
 import TitleField from './fields/TitleField';

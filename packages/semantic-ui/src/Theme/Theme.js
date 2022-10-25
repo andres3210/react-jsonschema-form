@@ -1,5 +1,5 @@
 import React from 'react';
-import { utils } from '@rjsf/core';
+import { utils } from '@northek/rjsf-core';
 import { Form as SuiForm } from "semantic-ui-react";
 import SubmitButton from '../SubmitButton';
 import ArrayFieldTemplate from "../ArrayFieldTemplate";

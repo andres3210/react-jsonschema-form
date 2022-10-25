@@ -2,7 +2,7 @@
 import React from "react";
 import { getSemanticProps } from "../util";
 import { Form } from "semantic-ui-react";
-import {  utils } from "@rjsf/core";
+import {  utils } from "@northek/rjsf-core";
 
 const { getDisplayLabel } = utils;
 function DateWidget(props) {

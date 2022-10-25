@@ -3,8 +3,8 @@ import React from "react";
 import Slider from "@material-ui/core/Slider";
 import FormLabel from "@material-ui/core/FormLabel";
 
-import { utils } from "@rjsf/core";
-import { WidgetProps } from "@rjsf/core";
+import { utils } from "@northek/rjsf-core";
+import { WidgetProps } from "@northek/rjsf-core";
 
 const { rangeSpec } = utils;
 

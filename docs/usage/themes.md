@@ -7,7 +7,7 @@ meaning that you must load the Bootstrap stylesheet on the page to view the form
 
  Theme Name | Status | Package Name / Link
  ---------- | ------- | -----------
- Bootstrap 3 (default) | Published | `@rjsf/core`
+ Bootstrap 3 (default) | Published | `@northek/rjsf-core`
  Bootstrap 4 | Published | `@rjsf/bootstrap-4`
  material-ui | Published | `@rjsf/material-ui`
  fluent-ui | Published | `@rjsf/fluent-ui`
@@ -18,7 +18,7 @@ meaning that you must load the Bootstrap stylesheet on the page to view the form
 ## Using themes
 
 To use a theme from a package, just import the `<Form />` component from that package. For example, to use the material ui form,
-first install both `@rjsf/core` and `@rjsf/material-ui`. Then you can import the form by doing:
+first install both `@northek/rjsf-core` and `@rjsf/material-ui`. Then you can import the form by doing:
 
 ```js
 import Form from "@rjsf/material-ui";
@@ -30,15 +30,15 @@ You can also use the uiSchema to add custom CSS class names to your form.
 
 ## Customizing with other frameworks
 
-The default theme is bootstrap 3. In order to use another theme, you must first install `@rjsf/core`.
+The default theme is bootstrap 3. In order to use another theme, you must first install `@northek/rjsf-core`.
 
 For example, to use the standard bootstrap 3 form, you can run:
 
 ```js
-import Form from "@rjsf/core";
+import Form from "@northek/rjsf-core";
 ```
 
-To use the material-ui form, you should first install both `@rjsf/core` and `@rjsf/material-ui`. Then, you can run:
+To use the material-ui form, you should first install both `@northek/rjsf-core` and `@rjsf/material-ui`. Then, you can run:
 
 ```js
 import Form from "@rjsf/material-ui";

@@ -59,10 +59,10 @@ Ant Design theme, fields and widgets for `react-jsonschema-form`.
 - `antd >= 4.0.0`
 - `@ant-design/icons >= 4.0.0`
 - `dayjs >= 1.8.0`
-- `@rjsf/core >= 2.0.0`
+- `@northek/rjsf-core >= 2.0.0`
 
 ```sh
-npm install antd @ant-design/icons dayjs @rjsf/core
+npm install antd @ant-design/icons dayjs @northek/rjsf-core
 ```
 
 ### Installation
@@ -80,7 +80,7 @@ import Form from '@rjsf/antd';
 or
 
 ```javascript
-import { withTheme } from '@rjsf/core';
+import { withTheme } from '@northek/rjsf-core';
 import { Theme as AntDTheme } from '@rjsf/antd';
 
 // Make modifications to the theme with your own fields and widgets

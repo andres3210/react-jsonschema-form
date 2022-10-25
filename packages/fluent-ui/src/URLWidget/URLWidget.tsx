@@ -1,6 +1,6 @@
 import React from "react";
 
-import { WidgetProps } from "@rjsf/core";
+import { WidgetProps } from "@northek/rjsf-core";
 
 const URLWidget = (props: WidgetProps) => {
   const { registry } = props;

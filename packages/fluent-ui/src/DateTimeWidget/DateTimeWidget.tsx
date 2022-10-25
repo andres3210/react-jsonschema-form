@@ -1,6 +1,6 @@
 import React from "react";
 
-import { WidgetProps, utils } from "@rjsf/core";
+import { WidgetProps, utils } from "@northek/rjsf-core";
 
 const { localToUTC, utcToLocal } = utils;
 

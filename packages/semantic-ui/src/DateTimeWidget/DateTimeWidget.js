@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { utils } from "@rjsf/core";
+import { utils } from "@northek/rjsf-core";
 import { getSemanticProps } from "../util";
 import { Form } from "semantic-ui-react";
 

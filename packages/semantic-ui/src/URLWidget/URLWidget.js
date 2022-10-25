@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "semantic-ui-react";
 import { getSemanticProps } from "../util";
-import {  utils } from "@rjsf/core";
+import {  utils } from "@northek/rjsf-core";
 
 const { getDisplayLabel } = utils;
 function URLWidget(props) {

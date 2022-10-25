@@ -18,7 +18,7 @@ should change the heading of the (upcoming) version to include a major version b
 
 # v3.2.0 (upcoming)
 
-## @rjsf/core
+## @northek/rjsf-core
 - Fix for clearing errors after updating and submitting form (https://github.com/rjsf-team/react-jsonschema-form/pull/2536)
 - bootstrap-4 TextWidget wrappers now pull from registry, add rootSchema to Registry, fix FieldProps.onFocus type to match WidgetProps (https://github.com/rjsf-team/react-jsonschema-form/pull/2519)
 - Added global `readonly` flag to the `Form` (https://github.com/rjsf-team/react-jsonschema-form/pull/2554)
@@ -36,7 +36,7 @@ should change the heading of the (upcoming) version to include a major version b
 
 # v3.1.0
 
-## @rjsf/core
+## @northek/rjsf-core
 - Properly assign label prop for MultiSelect ArrayField (https://github.com/rjsf-team/react-jsonschema-form/pull/2459)
 - Take into account implicitly defined types when rendering labels for fields (https://github.com/rjsf-team/react-jsonschema-form/pull/2502)
 

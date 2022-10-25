@@ -1,5 +1,5 @@
 import React from "react";
-import { WidgetProps } from '@rjsf/core';
+import { WidgetProps } from '@northek/rjsf-core';
 
 const FileWidget = (props: WidgetProps) => {
   const { registry } = props;

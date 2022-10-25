@@ -59,10 +59,10 @@ Fluent UI theme, fields and widgets for `react-jsonschema-form`.
 ### Prerequisites
 
 - `@fluentui/react >= 7.114.2`
-- `@rjsf/core >= 2.0.0`
+- `@northek/rjsf-core >= 2.0.0`
 
 ```bash
-yarn add @fluentui/react @rjsf/core
+yarn add @fluentui/react @northek/rjsf-core
 ```
 
 For the Fluent UI grid to work, add the following CSS tag to the main HTML page:
@@ -88,7 +88,7 @@ import Form from '@rjsf/fluent-ui';
 or
 
 ```js
-import { withTheme } from '@rjsf/core';
+import { withTheme } from '@northek/rjsf-core';
 import { Theme as FluentUITheme } from '@rjsf/fluent-ui';
 
 // Make modifications to the theme with your own fields and widgets
