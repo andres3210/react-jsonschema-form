@@ -1,5 +1,5 @@
 {
-  "name": "@rjsf/bootstrap-4",
+  "name": "@northek/rjsf-bootstrap-4",
   "version": "3.1.0",
   "main": "dist/index.js",
   "module": "dist/bootstrap-4.esm.js",
