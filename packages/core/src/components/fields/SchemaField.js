@@ -310,6 +310,16 @@ function SchemaFieldRender(props) {
     />
   );
 
+  // If Widgets are trying to subscribe to relative data,
+  //   pass subscribre function
+  if (
+    typeof uiSchema["ui:widget"] !== "undefined" &&
+    typeof uiSchema["ui:options"] !== "undefined" &&
+    typeof uiSchema["ui:options"]["data"] !== "undefined"
+  ) {
+    uiSchema["ui:options"].subscribeNodeUpdates = subscribeNodeUpdates;
+  }
+
   const id = idSchema.$id;
 
   // If this schema has a title defined, but the user has set a new key/label, retain their input.
