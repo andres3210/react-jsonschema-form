@@ -1,5 +1,5 @@
 {
-  "name": "@rjsf/fluent-ui",
+  "name": "@northek/rjsf-fluent-ui",
   "version": "3.1.0",
   "main": "dist/index.js",
   "module": "dist/fluent-ui.esm.js",

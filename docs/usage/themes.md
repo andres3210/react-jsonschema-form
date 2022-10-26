@@ -9,19 +9,19 @@ meaning that you must load the Bootstrap stylesheet on the page to view the form
  ---------- | ------- | -----------
  Bootstrap 3 (default) | Published | `@northek/rjsf-core`
  Bootstrap 4 | Published | `@northek/rjsf-bootstrap-4`
- material-ui | Published | `@rjsf/material-ui`
- fluent-ui | Published | `@rjsf/fluent-ui`
- antd | Published | `@rjsf/antd`
- Semantic UI | Published | `@rjsf/semantic-ui`
+ material-ui | Published | `@northek/rjsf-material-ui`
+ fluent-ui | Published | `@northek/rjsf-fluent-ui`
+ antd | Published | `@northek/rjsf-antd`
+ Semantic UI | Published | `@northek/rjsf-semantic-ui`
 
 
 ## Using themes
 
 To use a theme from a package, just import the `<Form />` component from that package. For example, to use the material ui form,
-first install both `@northek/rjsf-core` and `@rjsf/material-ui`. Then you can import the form by doing:
+first install both `@northek/rjsf-core` and `@northek/rjsf-material-ui`. Then you can import the form by doing:
 
 ```js
-import Form from "@rjsf/material-ui";
+import Form from "@northek/rjsf-material-ui";
 ```
 
 If you would like to contribute a theme with a new UI framework, please develop the theme using the `withTheme` component described in [Theme Customization](../advanced-customization/custom-themes.md) and make a PR!
@@ -38,10 +38,10 @@ For example, to use the standard bootstrap 3 form, you can run:
 import Form from "@northek/rjsf-core";
 ```
 
-To use the material-ui form, you should first install both `@northek/rjsf-core` and `@rjsf/material-ui`. Then, you can run:
+To use the material-ui form, you should first install both `@northek/rjsf-core` and `@northek/rjsf-material-ui`. Then, you can run:
 
 ```js
-import Form from "@rjsf/material-ui";
+import Form from "@northek/rjsf-material-ui";
 ```
 
 For more information on how to create a custom theme, see documentation on the `withTheme` component.

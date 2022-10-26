@@ -27,7 +27,7 @@ should change the heading of the (upcoming) version to include a major version b
 ## @northek/rjsf-bootstrap-4
 - bootstrap-4 TextWidget wrappers now pull from registry, add rootSchema to Registry, fix FieldProps.onFocus type to match WidgetProps (https://github.com/rjsf-team/react-jsonschema-form/pull/2519)
 
-## @rjsf/fluent-ui
+## @northek/rjsf-fluent-ui
 - fluent-ui: Allow value of 0 in TextWidget (https://github.com/rjsf-team/react-jsonschema-form/pull/2497)
 
 ## Dev / docs / playground
@@ -40,16 +40,16 @@ should change the heading of the (upcoming) version to include a major version b
 - Properly assign label prop for MultiSelect ArrayField (https://github.com/rjsf-team/react-jsonschema-form/pull/2459)
 - Take into account implicitly defined types when rendering labels for fields (https://github.com/rjsf-team/react-jsonschema-form/pull/2502)
 
-## @rjsf/antd
-- Add default Form export to @rjsf/antd (https://github.com/rjsf-team/react-jsonschema-form/pull/2514) 
+## @northek/rjsf-antd
+- Add default Form export to @northek/rjsf-antd (https://github.com/rjsf-team/react-jsonschema-form/pull/2514) 
 
-## @rjsf/fluent-ui
+## @northek/rjsf-fluent-ui
 - Make material-ui and fluent-ui pull TextWidget from the registry; remove registry prop from <div> in TextWidget (https://github.com/rjsf-team/react-jsonschema-form/pull/2515)
 
-## @rjsf/material-ui
+## @northek/rjsf-material-ui
 - Make material-ui and fluent-ui pull TextWidget from the registry; remove registry prop from <div> in TextWidget (https://github.com/rjsf-team/react-jsonschema-form/pull/2515)
 
-## @rjsf/semantic-ui
+## @northek/rjsf-semantic-ui
 - Use getDisplayLabel to properly show labels for widgets (https://github.com/rjsf-team/react-jsonschema-form/pull/2225)
 - Add submit button, email, url, date widgets (https://github.com/rjsf-team/react-jsonschema-form/pull/2224)
 

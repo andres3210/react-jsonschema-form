@@ -70,7 +70,7 @@ yarn add semantic-ui-css semantic-ui-react @northek/rjsf-core
 ### Installation
 
 ```sh
-yarn add @rjsf/semantic-ui
+yarn add @northek/rjsf-semantic-ui
 ```
 
 <!-- USAGE EXAMPLES -->
@@ -78,14 +78,14 @@ yarn add @rjsf/semantic-ui
 ## Usage
 
 ```javascript
-import Form from '@rjsf/semantic-ui';
+import Form from '@northek/rjsf-semantic-ui';
 ```
 
 or
 
 ```javascript
 import { withTheme } from '@northek/rjsf-core';
-import { Theme as SemanticUITheme } from '@rjsf/semantic-ui';
+import { Theme as SemanticUITheme } from '@northek/rjsf-semantic-ui';
 
 // Make modifications to the theme with your own fields and widgets
 
@@ -152,8 +152,8 @@ GitHub repository: [https://github.com/rjsf-team/react-jsonschema-form](https://
 [contributors-url]: https://github.com/rjsf-team/react-jsonschema-form/graphs/contributors
 [license-shield]: https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat-square
 [license-url]: https://choosealicense.com/licenses/apache-2.0/
-[npm-shield]: https://img.shields.io/npm/v/@rjsf/semantic-ui/latest.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/@rjsf/semantic-ui
-[npm-dl-shield]: https://img.shields.io/npm/dm/@rjsf/semantic-ui.svg?style=flat-square
-[npm-dl-url]: https://www.npmjs.com/package/@rjsf/semantic-ui
+[npm-shield]: https://img.shields.io/npm/v/@northek/rjsf-semantic-ui/latest.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/@northek/rjsf-semantic-ui
+[npm-dl-shield]: https://img.shields.io/npm/dm/@northek/rjsf-semantic-ui.svg?style=flat-square
+[npm-dl-url]: https://www.npmjs.com/package/@northek/rjsf-semantic-ui
 [product-screenshot]: https://raw.githubusercontent.com/rjsf-team/react-jsonschema-form/59a8206e148474bea854bbb004f624143fbcbac8/packages/semantic-ui/screenshot.png

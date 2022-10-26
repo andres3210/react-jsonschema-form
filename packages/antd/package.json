@@ -1,5 +1,5 @@
 {
-  "name": "@rjsf/antd",
+  "name": "@northek/rjsf-antd",
   "version": "3.1.0",
   "description": "Ant Design theme, fields and widgets for react-jsonschema-form",
   "main": "dist/cjs/index.js",

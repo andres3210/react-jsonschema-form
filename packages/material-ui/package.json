@@ -1,5 +1,5 @@
 {
-  "name": "@rjsf/material-ui",
+  "name": "@northek/rjsf-material-ui",
   "version": "3.1.0",
   "main": "dist/index.js",
   "module": "dist/material-ui.esm.js",
