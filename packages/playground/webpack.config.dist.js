@@ -18,6 +18,7 @@ module.exports = {
   },
   plugins: [
     new MonacoWebpackPlugin({
+      features: ["!gotoSymbol"],
       languages: ['json']
     }),
     new webpack.DefinePlugin({
