@@ -59,8 +59,8 @@ const CheckboxesWidget = ({
             enumDisabled && (enumDisabled as any).indexOf(option.value) != -1;
 
           return inline ? (
-            <Form key={index}>
               <Form.Check
+                key={index}
                 required={required}
                 inline
                 className="bg-transparent border-0"
@@ -75,10 +75,9 @@ const CheckboxesWidget = ({
                 onFocus={_onFocus}
                 disabled={disabled || itemDisabled || readonly}
               />
-            </Form>
           ) : (
-            <Form key={index}>
               <Form.Check
+                key={index}
                 custom
                 required={required}
                 checked={checked}
@@ -92,7 +91,6 @@ const CheckboxesWidget = ({
                 onFocus={_onFocus}
                 disabled={disabled || itemDisabled || readonly}
               />
-            </Form>
           );
         })}
       </Form.Group>
