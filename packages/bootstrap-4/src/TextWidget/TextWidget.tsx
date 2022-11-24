@@ -2,6 +2,8 @@ import React from "react";
 
 import Form from "react-bootstrap/Form";
 
+import ExtendedHelp from "../ExtendedHelp";
+
 import { WidgetProps } from "@northek/rjsf-core";
 
 const TextWidget = ({
@@ -34,12 +36,18 @@ const TextWidget = ({
   const inputType = (type || schema.type) === 'string' ?  'text' : `${type || schema.type}`
 
   // const classNames = [rawErrors.length > 0 ? "is-invalid" : "", type === 'file' ? 'custom-file-label': ""]
+  
+  const Label = (<Form.Label className={rawErrors.length > 0 ? "text-danger" : ""}>
+      {label || schema.title}
+      {(label || schema.title) && required ? "*" : null}
+    </Form.Label>)
+
   return (
     <Form.Group className="mb-0">
-      <Form.Label className={rawErrors.length > 0 ? "text-danger" : ""}>
-        {label || schema.title}
-        {(label || schema.title) && required ? "*" : null}
-      </Form.Label>
+      { typeof options["extended-help"] !== "undefined" ? 
+        <ExtendedHelp help={options["extended-help"]}>{Label}</ExtendedHelp> : 
+        Label
+      }
       <Form.Control
         id={id}
         placeholder={placeholder}
