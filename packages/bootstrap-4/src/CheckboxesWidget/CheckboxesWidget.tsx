@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import { WidgetProps } from "@northek/rjsf-core";
+import ExtendedHelp from "../ExtendedHelp";
 
 const selectValue = (value: any, selected: any, all: any) => {
   const at = all.indexOf(value);
@@ -49,9 +50,13 @@ const CheckboxesWidget = ({
     target: { value },
   }: React.FocusEvent<HTMLInputElement>) => onFocus(id, value);
 
+  const Label = (<Form.Label htmlFor={id}>{label || schema.title}</Form.Label>)
   return (
     <>
-      <Form.Label htmlFor={id}>{label || schema.title}</Form.Label>
+      { typeof options["extended-help"] !== "undefined" ? 
+        <ExtendedHelp help={options["extended-help"]}>{Label}</ExtendedHelp> : 
+        Label
+      }
       <Form.Group>
         {(enumOptions as any).map((option: any, index: number) => {
           const checked = value.indexOf(option.value) !== -1;
