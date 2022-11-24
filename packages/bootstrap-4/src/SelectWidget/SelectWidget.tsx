@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 
 import { WidgetProps } from "@northek/rjsf-core";
 import { utils } from "@northek/rjsf-core";
+import ExtendedHelp from "../ExtendedHelp";
 
 const { asNumber, guessType } = utils;
 
@@ -74,12 +75,17 @@ const SelectWidget = ({
     }
   }
 
+  const Label = (<Form.Label className={rawErrors.length > 0 ? "text-danger" : ""}>
+      {label || schema.title}
+      {(label || schema.title) && required ? "*" : null}
+    </Form.Label>)
+
   return (
     <Form.Group>
-      <Form.Label className={rawErrors.length > 0 ? "text-danger" : ""}>
-        {label || schema.title}
-        {(label || schema.title) && required ? "*" : null}
-      </Form.Label>
+      { typeof options["extended-help"] !== "undefined" ? 
+        <ExtendedHelp help={options["extended-help"]}>{Label}</ExtendedHelp> : 
+        Label
+      }
       <Form.Control
         as="select"
         custom

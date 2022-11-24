@@ -3,6 +3,7 @@ import React from "react";
 import { WidgetProps } from "@northek/rjsf-core";
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
+import ExtendedHelp from "../ExtendedHelp";
 
 type CustomWidgetProps = WidgetProps & {
   options: any;
@@ -35,18 +36,22 @@ const TextareaWidget = ({
     target: { value },
   }: React.FocusEvent<HTMLTextAreaElement>) => onFocus(id, value);
 
+  const Label = (<label htmlFor={id}>
+      {label || schema.title}
+      {required && (
+        <span
+          aria-hidden
+          className={rawErrors.length > 0 ? "text-danger ml-1" : "ml-1"}>
+          &thinsp;{"*"}
+        </span>
+      )}
+    </label>)
   return (
     <>
-      <label htmlFor={id}>
-        {label || schema.title}
-        {required && (
-          <span
-            aria-hidden
-            className={rawErrors.length > 0 ? "text-danger ml-1" : "ml-1"}>
-            &thinsp;{"*"}
-          </span>
-        )}
-      </label>
+      { typeof options["extended-help"] !== "undefined" ? 
+        <ExtendedHelp help={options["extended-help"]}>{Label}</ExtendedHelp> : 
+        Label
+      }
       <InputGroup>
         <FormControl
           id={id}

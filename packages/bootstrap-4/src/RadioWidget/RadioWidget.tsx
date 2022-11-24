@@ -3,6 +3,7 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 
 import { WidgetProps } from "@northek/rjsf-core";
+import ExtendedHelp from "../ExtendedHelp";
 
 const RadioWidget = ({
   id,
@@ -31,12 +32,18 @@ const RadioWidget = ({
 
   const inline = Boolean(options && options.inline);
 
+  const Label = (<Form.Label>
+      {label || schema.title}
+      {(label || schema.title) && required ? "*" : null}
+    </Form.Label>)
+
   return (
     <Form.Group className="mb-0">
-      <Form.Label className="d-block">
-        {label || schema.title}
-        {(label || schema.title) && required ? "*" : null}
-      </Form.Label>
+      <div className="d-block">
+        { typeof options["extended-help"] !== "undefined" ? 
+          <ExtendedHelp help={options["extended-help"]}>{Label}</ExtendedHelp> : Label
+        }
+      </div>
       {(enumOptions as any).map((option: any, i: number) => {
         const itemDisabled =
           Array.isArray(enumDisabled) &&
